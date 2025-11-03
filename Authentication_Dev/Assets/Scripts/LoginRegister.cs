@@ -33,6 +33,19 @@ public class LoginRegister : MonoBehaviour
         );
     }
 
+    public void OnLoginButton()
+    {
+        LoginWithPlayFabRequest loginRequest = new LoginWithPlayFabRequest
+        {
+            Username = usernameInput.text,
+            Password = passwordInput.text
+        };
+
+        PlayFabClientAPI.LoginWithPlayFab(loginRequest,
+            result => Debug.Log("Logged in as: " + result.PlayFabId),
+            error => Debug.Log(error.ErrorMessage)
+            );
+    }
     
 
     // Update is called once per frame
