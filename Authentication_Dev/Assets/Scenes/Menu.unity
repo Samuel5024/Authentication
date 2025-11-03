@@ -1305,7 +1305,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 972289467}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076431406}
+        m_TargetAssemblyTypeName: LoginRegister, Assembly-CSharp
+        m_MethodName: OnRegister
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &972289467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,7 +1690,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1767,6 +1791,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2320f4fd4ec0e50469ad69a33558f7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usernameInput: {fileID: 1058420292}
+  passwordInput: {fileID: 540874987}
+  displayText: {fileID: 812599576}
 --- !u!4 &1076431407
 Transform:
   m_ObjectHideFlags: 0
