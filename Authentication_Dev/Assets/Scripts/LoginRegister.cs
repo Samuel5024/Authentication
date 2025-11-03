@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
@@ -10,6 +11,16 @@ public class LoginRegister : MonoBehaviour
     public TMP_InputField passwordInput;
 
     public TextMeshProUGUI displayText;
+    public UnityEvent onLoggedIn;
+
+    [HideInInspector]
+    public string playFabId;
+
+    public static LoginRegister instance;
+    void Awake()
+    {
+        instance = this;    
+    }
     public void OnRegister()
     {
         RegisterPlayFabUserRequest registerRequest = new RegisterPlayFabUserRequest
@@ -24,11 +35,11 @@ public class LoginRegister : MonoBehaviour
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest,
             result =>
             {
-                Debug.Log(result.PlayFabId);
+                SetDisplayText(result.PlayFabId, Color.green);
             },
             error =>
             {
-            Debug.Log(error);
+                SetDisplayText(error.ErrorMessage, Color.red);
             }
         );
     }
@@ -42,9 +53,27 @@ public class LoginRegister : MonoBehaviour
         };
 
         PlayFabClientAPI.LoginWithPlayFab(loginRequest,
-            result => Debug.Log("Logged in as: " + result.PlayFabId),
-            error => Debug.Log(error.ErrorMessage)
+            result =>
+            {
+                SetDisplayText("Logged in as: " + result.PlayFabId, Color.green);
+                
+                if(onLoggedIn != null)
+                {
+                    onLoggedIn.Invoke();
+                }
+
+                playFabId = result.PlayFabId;
+            },
+
+
+            error => SetDisplayText(error.ErrorMessage, Color.red)
             );
+    }
+
+    void SetDisplayText(string text, Color color)
+    {
+        displayText.text = text;
+        displayText.color = color;
     }
     
 
